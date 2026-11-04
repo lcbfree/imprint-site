@@ -1,0 +1,129 @@
+@font-face {
+  font-family: "DSEG7";
+  src: url("DSEG7Classic-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  --paper: #ffffff;
+  --panel: #f2f2f7;
+  --ink: #1c1c1e;
+  --muted: #6e6e73;
+  --rule: #e5e5ea;
+  --indigo: #1f4e79;
+  --film: #f5a33b;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+a { color: var(--indigo); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; border-radius: 2px; }
+
+.wrap { max-width: 40rem; margin: 0 auto; padding: 0 1.5rem; }
+
+/* Top bar */
+.bar {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding: 1.5rem 0 0;
+}
+.wordmark { font-weight: 700; font-size: 1.0625rem; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+.wordmark span { color: var(--muted); font-weight: 400; margin-left: 0.4em; }
+.bar nav a { margin-left: 1.25rem; font-size: 0.9375rem; text-decoration: none; }
+.bar nav a:hover { text-decoration: underline; }
+
+/* Hero: two prints on the table */
+.prints {
+  position: relative;
+  height: clamp(15rem, 58vw, 22rem);
+  margin: 2.5rem 0 2rem;
+}
+.print {
+  position: absolute;
+  width: 70%;
+  background: #fff;
+  padding: 3.2% 3.2% 3.2%;
+  box-shadow: 0 1px 2px rgba(28, 28, 30, 0.12), 0 8px 24px rgba(28, 28, 30, 0.10);
+}
+.print .photo { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: var(--panel); }
+.print img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.print.back  { left: 0;   top: 0;   transform: rotate(-4deg); }
+.print.front { right: 0;  bottom: 0; transform: rotate(2.5deg); }
+
+.stamp { position: absolute; right: 7%; bottom: 7%; line-height: 1; white-space: nowrap; }
+.stamp.film {
+  font-family: "DSEG7", ui-monospace, monospace;
+  color: var(--film);
+  font-size: clamp(0.75rem, 3.1vw, 1.15rem);
+  text-shadow: 0 0 4px rgba(245, 163, 59, 0.75), 0 0 1px rgba(245, 120, 30, 0.9);
+  letter-spacing: 0.06em;
+}
+.stamp.clear {
+  font-family: "Avenir Next", "Avenir", -apple-system, sans-serif;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.93);
+  font-size: clamp(0.7rem, 2.8vw, 1.05rem);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  text-align: right;
+}
+.stamp.clear small { display: block; font-size: 0.8em; margin-top: 0.25em; }
+
+h1 {
+  font-size: clamp(1.75rem, 5.4vw, 2.4rem);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  max-width: 20em;
+}
+h2 { font-size: 1.375rem; line-height: 1.3; margin: 2.75rem 0 0.75rem; letter-spacing: -0.01em; }
+h3 { font-size: 1.0625rem; margin: 1.75rem 0 0.35rem; }
+p, li { max-width: 36em; }
+.lede { font-size: 1.1875rem; color: var(--ink); margin: 0 0 2rem; }
+.muted { color: var(--muted); }
+
+/* The three steps really are a sequence */
+ol.steps { list-style: none; padding: 0; margin: 0 0 2rem; counter-reset: step; border-top: 0.5px solid var(--rule); }
+ol.steps li {
+  counter-increment: step;
+  display: grid; grid-template-columns: 2.25rem 1fr; gap: 0 0.5rem;
+  padding: 1rem 0; border-bottom: 0.5px solid var(--rule);
+}
+ol.steps li::before { content: counter(step); color: var(--indigo); font-weight: 700; }
+ol.steps strong { display: block; }
+ol.steps span { color: var(--muted); grid-column: 2; }
+
+.store { margin: 0 0 3rem; color: var(--muted); font-size: 0.9375rem; }
+
+/* Long-form pages */
+.doc { padding-bottom: 2rem; }
+.doc h1 { margin-top: 2.5rem; }
+.doc .updated { color: var(--muted); font-size: 0.9375rem; margin: 0 0 2rem; }
+.doc ul { padding-left: 1.2rem; }
+.doc li { margin: 0.35rem 0; }
+
+.lang-split { border: 0; border-top: 0.5px solid var(--rule); margin: 3.5rem 0 0; }
+
+footer {
+  border-top: 0.5px solid var(--rule);
+  margin-top: 3rem; padding: 1.25rem 0 2.5rem;
+  font-size: 0.875rem; color: var(--muted);
+}
+footer a { margin-right: 1rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .print.front { animation: settle 700ms cubic-bezier(.2, .7, .2, 1) both; }
+  @keyframes settle {
+    from { transform: translate(6%, -10%) rotate(9deg); opacity: 0; }
+    to   { transform: rotate(2.5deg); opacity: 1; }
+  }
+}
