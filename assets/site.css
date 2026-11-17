@@ -103,6 +103,15 @@ ol.steps strong { display: block; }
 ol.steps span { color: var(--muted); grid-column: 2; }
 
 .store { margin: 0 0 3rem; color: var(--muted); font-size: 0.9375rem; }
+.store-link {
+  display: inline-block;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--indigo);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.store-link:hover { text-decoration: underline; }
 
 /* Long-form pages */
 .doc { padding-bottom: 2rem; }
